@@ -1,6 +1,5 @@
 import moment from 'moment'
 
-// import { mbr } from './utils/mbr'
 import { mbr } from '@edsc/geo-utils'
 import projections from './utils/projections'
 import { fetchSotoLayers } from './utils/fetchSotoLayers'

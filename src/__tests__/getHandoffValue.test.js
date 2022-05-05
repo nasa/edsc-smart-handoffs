@@ -7,7 +7,6 @@ describe('getHandoffValue', () => {
       const collectionMetadata = {
         conceptId: 'testId'
       }
-      const searchContext = {}
 
       const handoffInput = {
         valueType: 'conceptId'
@@ -15,7 +14,6 @@ describe('getHandoffValue', () => {
 
       expect(await getHandoffValue({
         collectionMetadata,
-        searchContext,
         handoffInput
       })).toEqual('testId')
     })
@@ -423,10 +421,6 @@ describe('getHandoffValue', () => {
         'GHRSST_L4_MUR_Sea_Ice_Concentration',
         'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies'
       ]
-
-      // const handoffs = {
-      //   sotoLayers: ['GHRSST_L4_MUR_Sea_Surface_Temperature', 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies']
-      // }
 
       const handoffInput = {
         valueType: 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming'

@@ -1,14 +1,14 @@
 import nock from 'nock'
 
 import { fetchSotoLayers } from '../fetchSotoLayers'
-import { sotoResponse } from './mocks'
+import { emptyResponse, sotoResponse } from './mocks'
 
 beforeEach(() => {
   jest.clearAllMocks()
 })
 
 describe('fetchSotoLayers', () => {
-  test('returns the user\'s contact info', async () => {
+  test('returns the SOTO layers', async () => {
     nock(/podaac-tools.jpl.nasa.gov/)
       .get(/soto_capabilities/)
       .reply(200, sotoResponse)
@@ -24,6 +24,16 @@ describe('fetchSotoLayers', () => {
     ]
 
     expect(layers).toEqual(expectedLayers)
+  })
+
+  test('returns no layers when the response has to layers', async () => {
+    nock(/podaac-tools.jpl.nasa.gov/)
+      .get(/soto_capabilities/)
+      .reply(200, emptyResponse)
+
+    const layers = await fetchSotoLayers()
+
+    expect(layers).toEqual([])
   })
 
   test('responds correctly on error', async () => {
