@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40edsc%2Fsmart-handoffs.svg)](https://badge.fury.io/js/%40edsc%2Fsmart-handoffs)
 ![Build Status](https://github.com/nasa/edsc-smart-handoffs/workflows/CI/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/nasa/edsc-smart-handoffs/branch/main/graph/badge.svg?token=4d8wFDtAc0)](https://codecov.io/gh/nasa/edsc-smart-handoffs)
+[![codecov](https://codecov.io/gh/nasa/edsc-smart-handoffs/branch/main/graph/badge.svg?token=3NMM9LWW7N)](https://codecov.io/gh/nasa/edsc-smart-handoffs)
 
 Smart handoffs allow users to link from one application to another while carrying with them certain parameters that set a specific context (e.g. open up the same dataset, temporal range, and spatial search in a new tool). This code simplifies the creation of smart handoff links.
 
