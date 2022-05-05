@@ -8,3 +8,7 @@ src
 tmp
 .github/workflows/ci.yml
 .snyk
+testEnv.js
+.codecov.yml
+.github
+.eslintrc.json
