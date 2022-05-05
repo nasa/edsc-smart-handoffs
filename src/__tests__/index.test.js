@@ -31,7 +31,6 @@ describe('UMM-T handoffs', () => {
           {
             valueName: 'bbox',
             description: 'A spatial bounding box that will set the spatial extent of the portrayed layers. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.',
-            valueRequired: false,
             valueType: 'https://schema.org/box'
           }
         ]
@@ -52,10 +51,6 @@ describe('UMM-T handoffs', () => {
         startDate: '2021-07-22T00:55:39.384Z'
       }
     }
-
-    // const handoffs = {
-    //   sotoLayers: ['GHRSST_L4_MUR_Sea_Surface_Temperature', 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies']
-    // }
 
     const response = await generateHandoffs({
       collectionMetadata: {},

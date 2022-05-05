@@ -16,15 +16,18 @@ export const fetchSotoLayers = async () => {
 
     const parser = new XMLParser()
 
+    // Parse the XML response
     const parsedCapabilities = parser.parse(sotoResponse.data, {
       ignoreAttributes: false,
       attributeNamePrefix: ''
     })
 
+    // Pull the layers out of the response
     const { Capabilities: capabilities = {} } = parsedCapabilities
     const { Contents: contents = {} } = capabilities
     let { Layer: capabilityLayers = [] } = contents
 
+    // Return only the `ows:Identifier` field from the layers
     capabilityLayers = [].concat(capabilityLayers).filter(Boolean).map((layer) => layer['ows:Identifier'])
 
     return capabilityLayers
