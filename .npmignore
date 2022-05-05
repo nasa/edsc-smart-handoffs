@@ -1,0 +1,10 @@
+.eslintignore
+.eslintrc
+.nvmrc
+babel.config.js
+coverage
+jest.config.js
+src
+tmp
+.github/workflows/ci.yml
+.snyk

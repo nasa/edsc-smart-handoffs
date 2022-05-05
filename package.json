@@ -1,0 +1,52 @@
+{
+  "name": "@edsc/smart-handoffs",
+  "version": "1.0.0",
+  "description": "Smart handoffs allow users to link from one application to another while carrying with them certain parameters that set a specific context (e.g. open up the same dataset, temporal range, and spatial search in a new tool). This code simplifies the creation of smart handoff links.",
+  "main": "./dist/js/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "silent-test": "jest --silent",
+    "build": "babel src -d dist --ignore '**/*.test.js'",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nasa/edsc-smart-handoffs.git"
+  },
+  "keywords": [
+    "edsc",
+    "smart handoffs",
+    "umm-t"
+  ],
+  "author": {
+    "name": "Matthew Crouch",
+    "email": "matthew@element84.com"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nasa/edsc-smart-handoffs/issues"
+  },
+  "homepage": "https://github.com/nasa/edsc-smart-handoffs#readme",
+  "dependencies": {
+    "@edsc/geo-utils": "^1.0.1",
+    "axios": "^0.27.2",
+    "fast-xml-parser": "^4.0.7",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.2",
+    "url-template": "^2.0.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "jest": "^27.5.1",
+    "jsdom": "^19.0.0",
+    "nock": "^13.2.4"
+  }
+}
