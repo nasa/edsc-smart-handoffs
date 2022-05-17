@@ -10,7 +10,7 @@ import { getHandoffValue } from './getHandoffValue'
  * @param {Object} params.searchContext Collection Search context
  * @param {Object} params.ummT UMM-T record
  */
-const generateHandoffs = async ({
+const generateHandoffs = ({
   collectionMetadata,
   searchContext,
   ummT
@@ -39,13 +39,13 @@ const generateHandoffs = async ({
   const urlValues = {}
 
   // Loop through each input and replace the input value in the urlTemplate to create the URL
-  await Promise.all(queryInput.map(async (input) => {
+  queryInput.forEach((input) => {
     const {
       valueName,
       valueRequired = false
     } = input
 
-    const value = await getHandoffValue({
+    const value = getHandoffValue({
       collectionMetadata,
       searchContext,
       handoffInput: input
@@ -57,7 +57,7 @@ const generateHandoffs = async ({
 
     // Add the value to be expanded onto the urlTemplate later
     urlValues[valueName] = value
-  }))
+  })
 
   // If all the required inputs are present, push the generated link onto handoffLinks to be returned
   if (allRequiredItemsPresent) {
