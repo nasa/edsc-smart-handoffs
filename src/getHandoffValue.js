@@ -2,7 +2,6 @@ import moment from 'moment'
 
 import { mbr } from '@edsc/geo-utils'
 import projections from './utils/projections'
-import { fetchSotoLayers } from './utils/fetchSotoLayers'
 
 /**
  * Returns the MBR of the collection query spatial
@@ -28,13 +27,11 @@ const spatialMbr = (spatial) => {
 /**
  * Returns the value for a given UMM-T handoff input
  * @param {Object} params
- * @param {Array} params.collectionGibsLayers GIBS Layer names associated with the collection
  * @param {Object} params.collectionMetadata Collection metadata from CMR
  * @param {Object} params.searchContext Collection Search context
  * @param {Object} params.handoffInput UMM-T handoff query input
  */
 export const getHandoffValue = async ({
-  collectionGibsLayers = [],
   collectionMetadata = {},
   searchContext = {},
   handoffInput
@@ -115,23 +112,6 @@ export const getHandoffValue = async ({
       moment.utc(startDate).toISOString(),
       moment.utc(endDate).toISOString()
     ].join(',')
-  }
-
-  // Layers value
-  // TODO will have to update this after UMM-T allows for user's to set enum valid values
-  if (valueType === 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming' && collectionGibsLayers.length > 0) {
-    // There is SOTO specific logic here. In the future this might need to be more generic, or the name
-    // of the handoff passed in to this util function
-    // TODO these values come from a lambda in EDSC
-    // const { sotoLayers = [] } = handoffs
-    const sotoLayers = await fetchSotoLayers()
-
-    // Filter out layers that are not included in SOTO's capabilities
-    const includedSotoLayers = collectionGibsLayers.filter((layer) => sotoLayers.includes(layer))
-
-    // In order for the layers in SOTO to be active when the user is handed off, `(la=true)` needs to be
-    // added to each layer in the URL
-    value = includedSotoLayers.map((data) => `${data}(la=true)`)
   }
 
   // Short name value

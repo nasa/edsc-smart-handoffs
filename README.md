@@ -18,7 +18,6 @@ The edsc-smart-handoffs plugin was developed as a component of
     import generateHandoffs from '@edsc/smart-handoffs'
 
     const handoffUrl = generateHandoffs({
-      collectionGibsLayers,
       collectionMetadata,
       searchContext,
       ummT
@@ -26,7 +25,6 @@ The edsc-smart-handoffs plugin was developed as a component of
 
 ### Parameters
 
-* collectionGibsLayers: GIBS Layer names associated with the collection
 * collectionMetadata: Collection metadata from CMR in UMM-C format
   * Currently only `conceptId` and `shortName` are used.
 * searchContext: Collection Search context

@@ -1,5 +1,4 @@
 import { getHandoffValue } from '../getHandoffValue'
-import * as fetchSotoLayers from '../utils/fetchSotoLayers'
 
 describe('getHandoffValue', () => {
   describe('When the value is a conceptId', () => {
@@ -406,50 +405,6 @@ describe('getHandoffValue', () => {
         collectionMetadata: {},
         searchContext: {},
         handoffInput
-      })).toEqual(undefined)
-    })
-  })
-
-  describe('When the value is a layer', () => {
-    test('returns the value', async () => {
-      jest.spyOn(fetchSotoLayers, 'fetchSotoLayers').mockImplementation(() => Promise.resolve(
-        ['GHRSST_L4_MUR_Sea_Surface_Temperature', 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies']
-      ))
-
-      const collectionGibsLayers = [
-        'GHRSST_L4_MUR_Sea_Surface_Temperature',
-        'GHRSST_L4_MUR_Sea_Ice_Concentration',
-        'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies'
-      ]
-
-      const handoffInput = {
-        valueType: 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming'
-      }
-
-      expect(await getHandoffValue({
-        collectionMetadata: {},
-        collectionGibsLayers,
-        searchContext: {},
-        handoffInput
-      })).toEqual([
-        'GHRSST_L4_MUR_Sea_Surface_Temperature(la=true)',
-        'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies(la=true)'
-      ])
-    })
-
-    test('returns undefined when the value doesn\t exist', async () => {
-      const handoffs = {
-        sotoLayers: []
-      }
-      const handoffInput = {
-        valueType: 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming'
-      }
-
-      expect(await getHandoffValue({
-        collectionMetadata: {},
-        searchContext: {},
-        handoffInput,
-        handoffs
       })).toEqual(undefined)
     })
   })
