@@ -1,47 +1,40 @@
 import generateHandoffs from '../index'
 
-import * as fetchSotoLayers from '../utils/fetchSotoLayers'
-
 describe('UMM-T handoffs', () => {
   test('returns a UMM-T handoff object', async () => {
-    jest.spyOn(fetchSotoLayers, 'fetchSotoLayers').mockImplementation(() => Promise.resolve(
-      ['GHRSST_L4_MUR_Sea_Surface_Temperature', 'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies']
-    ))
-
     const ummT = {
-      longName: 'State of the Ocean',
-      name: 'SOTO',
+      name: 'Giovanni',
+      longName: 'Giovanni',
       potentialAction: {
+        type: 'SearchAction',
         target: {
-          urlTemplate: 'https://podaac-tools.jpl.nasa.gov/soto/#b=BlueMarble_ShadedRelief_Bathymetry&l={+layers}&ve={+bbox}&d={+date}'
+          type: 'EntryPoint',
+          urlTemplate: 'https://giovanni.gsfc.nasa.gov/giovanni/#service=TmAvMp{?dataKeyword,starttime,endtime,bbox}',
+          httpMethod: ['GET']
         },
         queryInput: [
           {
-            valueName: 'layers',
-            description: 'A comma-separated list of visualization layer ids, as defined by GIBS. These layers will be portrayed on the web application',
+            valueName: 'dataKeyword',
             valueRequired: true,
-            valueType: 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming'
+            valueType: 'shortName'
           },
           {
-            valueName: 'date',
-            description: 'A UTC ISO DateTime. The layers portrayed will correspond to this date.',
-            valueRequired: false,
+            valueName: 'starttime',
+            valueRequired: true,
             valueType: 'https://schema.org/startDate'
           },
           {
+            valueName: 'endtime',
+            valueRequired: false,
+            valueType: 'https://schema.org/endDate'
+          },
+          {
             valueName: 'bbox',
-            description: 'A spatial bounding box that will set the spatial extent of the portrayed layers. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.',
             valueType: 'https://schema.org/box'
           }
         ]
       }
     }
-
-    const collectionGibsLayers = [
-      'GHRSST_L4_MUR_Sea_Surface_Temperature',
-      'GHRSST_L4_MUR_Sea_Ice_Concentration',
-      'GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies'
-    ]
 
     const searchContext = {
       spatial: {
@@ -53,45 +46,50 @@ describe('UMM-T handoffs', () => {
     }
 
     const response = await generateHandoffs({
-      collectionMetadata: {},
-      collectionGibsLayers,
+      collectionMetadata: {
+        shortName: 'mockCollection'
+      },
       searchContext,
       ummT
     })
 
     expect(response).toEqual([
       {
-        title: 'State of the Ocean',
-        href: 'https://podaac-tools.jpl.nasa.gov/soto/#b=BlueMarble_ShadedRelief_Bathymetry&l=GHRSST_L4_MUR_Sea_Surface_Temperature(la=true),GHRSST_L4_MUR_Sea_Surface_Temperature_Anomalies(la=true)&ve=-77.60234,37.00428,-75.15486,40.06987&d=2021-07-22T00:55:39.384Z'
+        title: 'Giovanni',
+        href: 'https://giovanni.gsfc.nasa.gov/giovanni/#service=TmAvMp?dataKeyword=mockCollection&starttime=2021-07-22T00%3A55%3A39.384Z&bbox=-77.60234%2C37.00428%2C-75.15486%2C40.06987'
       }
     ])
   })
 
   test('does not return a handoff object if all required fields are not present', async () => {
     const ummT = {
-      longName: 'State of the Ocean',
-      name: 'SOTO',
+      name: 'Giovanni',
+      longName: 'Giovanni',
       potentialAction: {
+        type: 'SearchAction',
         target: {
-          urlTemplate: 'https://podaac-tools.jpl.nasa.gov/soto/#b=BlueMarble_ShadedRelief_Bathymetry&l={+layers}&ve={+bbox}&d={+date}'
+          type: 'EntryPoint',
+          urlTemplate: 'https://giovanni.gsfc.nasa.gov/giovanni/#service=TmAvMp{?dataKeyword,starttime,endtime,bbox}',
+          httpMethod: ['GET']
         },
         queryInput: [
           {
-            valueName: 'layers',
-            description: 'A comma-separated list of visualization layer ids, as defined by GIBS. These layers will be portrayed on the web application',
+            valueName: 'dataKeyword',
             valueRequired: true,
-            valueType: 'https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-LayerNaming'
+            valueType: 'shortName'
           },
           {
-            valueName: 'date',
-            description: 'A UTC ISO DateTime. The layers portrayed will correspond to this date.',
-            valueRequired: false,
+            valueName: 'starttime',
+            valueRequired: true,
             valueType: 'https://schema.org/startDate'
           },
           {
-            valueName: 'bbox',
-            description: 'A spatial bounding box that will set the spatial extent of the portrayed layers. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.',
+            valueName: 'endtime',
             valueRequired: false,
+            valueType: 'https://schema.org/endDate'
+          },
+          {
+            valueName: 'bbox',
             valueType: 'https://schema.org/box'
           }
         ]
@@ -101,21 +99,15 @@ describe('UMM-T handoffs', () => {
     const searchContext = {
       spatial: {
         boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
-      },
-      temporal: {
-        startDate: '2021-07-22T00:55:39.384Z'
       }
     }
 
-    const handoffs = {
-      sotoLayers: []
-    }
-
     const response = await generateHandoffs({
-      collectionMetadata: {},
+      collectionMetadata: {
+        shortName: 'mockCollection'
+      },
       searchContext,
-      ummT,
-      handoffs
+      ummT
     })
 
     expect(response).toEqual([])

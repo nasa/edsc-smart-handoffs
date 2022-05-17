@@ -30,8 +30,6 @@
   "homepage": "https://github.com/nasa/edsc-smart-handoffs#readme",
   "dependencies": {
     "@edsc/geo-utils": "^1.0.1",
-    "axios": "^0.27.2",
-    "fast-xml-parser": "^4.0.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.2",
     "url-template": "^2.0.8"

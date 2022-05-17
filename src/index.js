@@ -6,13 +6,11 @@ import { getHandoffValue } from './getHandoffValue'
 /**
  * Generate an array of objects that will be used to render smart handoff links
  * @param {Object} params
- * @param {Array} params.collectionGibsLayers GIBS Layer names associated with the collection
  * @param {Object} params.collectionMetadata Collection metadata from CMR
  * @param {Object} params.searchContext Collection Search context
  * @param {Object} params.ummT UMM-T record
  */
 const generateHandoffs = async ({
-  collectionGibsLayers,
   collectionMetadata,
   searchContext,
   ummT
@@ -48,7 +46,6 @@ const generateHandoffs = async ({
     } = input
 
     const value = await getHandoffValue({
-      collectionGibsLayers,
       collectionMetadata,
       searchContext,
       handoffInput: input
