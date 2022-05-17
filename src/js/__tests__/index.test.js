@@ -1,7 +1,7 @@
 import generateHandoffs from '../index'
 
 describe('UMM-T handoffs', () => {
-  test('returns a UMM-T handoff object', async () => {
+  test('returns a UMM-T handoff object', () => {
     const ummT = {
       name: 'Giovanni',
       longName: 'Giovanni',
@@ -45,7 +45,7 @@ describe('UMM-T handoffs', () => {
       }
     }
 
-    const response = await generateHandoffs({
+    const response = generateHandoffs({
       collectionMetadata: {
         shortName: 'mockCollection'
       },
@@ -61,7 +61,7 @@ describe('UMM-T handoffs', () => {
     ])
   })
 
-  test('does not return a handoff object if all required fields are not present', async () => {
+  test('does not return a handoff object if all required fields are not present', () => {
     const ummT = {
       name: 'Giovanni',
       longName: 'Giovanni',
@@ -102,7 +102,7 @@ describe('UMM-T handoffs', () => {
       }
     }
 
-    const response = await generateHandoffs({
+    const response = generateHandoffs({
       collectionMetadata: {
         shortName: 'mockCollection'
       },
@@ -113,7 +113,7 @@ describe('UMM-T handoffs', () => {
     expect(response).toEqual([])
   })
 
-  test('does not return a handoff object if no tools exist', async () => {
+  test('does not return a handoff object if no tools exist', () => {
     const searchContext = {
       spatial: {
         boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -123,7 +123,7 @@ describe('UMM-T handoffs', () => {
       }
     }
 
-    const response = await generateHandoffs({
+    const response = generateHandoffs({
       collectionMetadata: {},
       searchContext,
       ummT: {}
@@ -132,7 +132,7 @@ describe('UMM-T handoffs', () => {
     expect(response).toEqual([])
   })
 
-  test('does not return a handoff object if no potentialActions exist', async () => {
+  test('does not return a handoff object if no potentialActions exist', () => {
     const ummT = {
       name: 'Mock tool'
     }
@@ -146,7 +146,7 @@ describe('UMM-T handoffs', () => {
       }
     }
 
-    const response = await generateHandoffs({
+    const response = generateHandoffs({
       collectionMetadata: {},
       searchContext,
       ummT

@@ -2,7 +2,7 @@ import { getHandoffValue } from '../getHandoffValue'
 
 describe('getHandoffValue', () => {
   describe('When the value is a conceptId', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const collectionMetadata = {
         conceptId: 'testId'
       }
@@ -11,18 +11,18 @@ describe('getHandoffValue', () => {
         valueType: 'conceptId'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata,
         handoffInput
       })).toEqual('testId')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'conceptId'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -31,7 +31,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a bounding box', () => {
-    test('returns the value for bounding box spatial as an array', async () => {
+    test('returns the value for bounding box spatial as an array', () => {
       const searchContext = {
         spatial: {
           boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -42,13 +42,13 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('-77.60234,37.00428,-75.15486,40.06987')
     })
 
-    test('returns the value for bounding box spatial as a string', async () => {
+    test('returns the value for bounding box spatial as a string', () => {
       const searchContext = {
         spatial: {
           boundingBox: '-77.60234,37.00428,-75.15486,40.06987'
@@ -59,13 +59,13 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('-77.60234,37.00428,-75.15486,40.06987')
     })
 
-    test('returns the value for circle spatial', async () => {
+    test('returns the value for circle spatial', () => {
       const searchContext = {
         spatial: {
           circle: ['-77.60234,37.00428,20000']
@@ -76,13 +76,13 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('-77.82731518274353,36.8246169445857,-77.37736481725646,37.183943055414304')
     })
 
-    test('returns the value for point spatial', async () => {
+    test('returns the value for point spatial', () => {
       const searchContext = {
         spatial: {
           point: ['-77.60234,37.00428']
@@ -93,13 +93,13 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('-77.60234000999999,37.00427999,-77.60233999,37.00428001')
     })
 
-    test('returns the value for polygon spatial', async () => {
+    test('returns the value for polygon spatial', () => {
       const searchContext = {
         spatial: {
           polygon: ['-77.04197,39.06811,-77.22704,38.94289,-77.01776,38.74591,-76.79505,38.93737,-77.04197,39.06811']
@@ -110,18 +110,18 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('-77.22704000000003,38.745909999999995,-76.79505000000003,39.06811000000002')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://schema.org/box'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -130,7 +130,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is minx', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         spatial: {
           boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -141,18 +141,18 @@ describe('getHandoffValue', () => {
         valueType: 'minx'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual(-77.60234)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'minx'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -161,7 +161,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is miny', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         spatial: {
           boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -172,18 +172,18 @@ describe('getHandoffValue', () => {
         valueType: 'miny'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual(37.00428)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'miny'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -192,7 +192,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is maxx', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         spatial: {
           boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -203,18 +203,18 @@ describe('getHandoffValue', () => {
         valueType: 'maxx'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual(-75.15486)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'maxx'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -223,7 +223,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is maxy', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         spatial: {
           boundingBox: ['-77.60234,37.00428,-75.15486,40.06987']
@@ -234,18 +234,18 @@ describe('getHandoffValue', () => {
         valueType: 'maxy'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual(40.06987)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'maxy'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -254,7 +254,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a start time', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         temporal: {
           startDate: '2021-07-22T00:55:39.384Z'
@@ -265,18 +265,18 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/startDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('2021-07-22T00:55:39.384Z')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://schema.org/startDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -285,7 +285,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a start date', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         temporal: {
           startDate: '2021-07-22T00:55:39.384Z'
@@ -296,18 +296,18 @@ describe('getHandoffValue', () => {
         valueType: 'startDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('2021-07-22')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'startDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -316,7 +316,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is an end time', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         temporal: {
           endDate: '2021-07-22T00:55:39.384Z'
@@ -327,18 +327,18 @@ describe('getHandoffValue', () => {
         valueType: 'https://schema.org/endDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('2021-07-22T00:55:39.384Z')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://schema.org/endDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -347,7 +347,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is an end date', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         temporal: {
           endDate: '2021-07-22T00:55:39.384Z'
@@ -358,18 +358,18 @@ describe('getHandoffValue', () => {
         valueType: 'endDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('2021-07-22')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'endDate'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -378,7 +378,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a temporalRange', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const searchContext = {
         temporal: {
           endDate: '2021-07-25T00:55:39.384Z',
@@ -390,18 +390,18 @@ describe('getHandoffValue', () => {
         valueType: 'temporalRange'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         searchContext,
         handoffInput
       })).toEqual('2021-07-22T00:00:00.000Z,2021-07-25T00:55:39.384Z')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'temporalRange'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -410,7 +410,7 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a shortName', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const collectionMetadata = {
         shortName: 'Mock short name'
       }
@@ -419,19 +419,19 @@ describe('getHandoffValue', () => {
         valueType: 'shortName'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata,
         searchContext: {},
         handoffInput
       })).toEqual('Mock short name')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'shortName'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -440,12 +440,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a mapProjection', () => {
-    test('returns geographic when the project is epsg4326', async () => {
+    test('returns geographic when the project is epsg4326', () => {
       const handoffInput = {
         valueType: 'mapProjection'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -456,12 +456,12 @@ describe('getHandoffValue', () => {
       })).toEqual('geographic')
     })
 
-    test('returns arctic when the project is epsg3413', async () => {
+    test('returns arctic when the project is epsg3413', () => {
       const handoffInput = {
         valueType: 'mapProjection'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -472,12 +472,12 @@ describe('getHandoffValue', () => {
       })).toEqual('arctic')
     })
 
-    test('returns antarctic when the project is epsg3031', async () => {
+    test('returns antarctic when the project is epsg3031', () => {
       const handoffInput = {
         valueType: 'mapProjection'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -488,12 +488,12 @@ describe('getHandoffValue', () => {
       })).toEqual('antarctic')
     })
 
-    test('returns geographic when the value doesn\t exist', async () => {
+    test('returns geographic when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'mapProjection'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -502,12 +502,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a mapProjection using epsg codes', () => {
-    test('returns EPSG:4326 when the project is epsg4326', async () => {
+    test('returns EPSG:4326 when the project is epsg4326', () => {
       const handoffInput = {
         valueType: 'https://spatialreference.org/ref/epsg/'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -518,12 +518,12 @@ describe('getHandoffValue', () => {
       })).toEqual('EPSG:4326')
     })
 
-    test('returns EPSG:3413 when the project is epsg3413', async () => {
+    test('returns EPSG:3413 when the project is epsg3413', () => {
       const handoffInput = {
         valueType: 'https://spatialreference.org/ref/epsg/'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -534,12 +534,12 @@ describe('getHandoffValue', () => {
       })).toEqual('EPSG:3413')
     })
 
-    test('returns EPSG:3031 when the project is epsg3031', async () => {
+    test('returns EPSG:3031 when the project is epsg3031', () => {
       const handoffInput = {
         valueType: 'https://spatialreference.org/ref/epsg/'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -550,12 +550,12 @@ describe('getHandoffValue', () => {
       })).toEqual('EPSG:3031')
     })
 
-    test('returns EPSG:4326 when the value doesn\t exist', async () => {
+    test('returns EPSG:4326 when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://spatialreference.org/ref/epsg/'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -564,12 +564,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a latitude', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const handoffInput = {
         valueType: 'https://schema.org/latitude'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -580,12 +580,12 @@ describe('getHandoffValue', () => {
       })).toEqual(0)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://schema.org/latitude'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -594,12 +594,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a longitude', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const handoffInput = {
         valueType: 'https://schema.org/longitude'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -610,12 +610,12 @@ describe('getHandoffValue', () => {
       })).toEqual(0)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'https://schema.org/longitude'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -624,12 +624,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a zoom', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const handoffInput = {
         valueType: 'zoom'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -640,12 +640,12 @@ describe('getHandoffValue', () => {
       })).toEqual(0)
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'zoom'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -654,12 +654,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a edscBaseLayer', () => {
-    test('returns blueMarble', async () => {
+    test('returns blueMarble', () => {
       const handoffInput = {
         valueType: 'edscBaseLayer'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -672,12 +672,12 @@ describe('getHandoffValue', () => {
       })).toEqual('blueMarble')
     })
 
-    test('returns trueColor', async () => {
+    test('returns trueColor', () => {
       const handoffInput = {
         valueType: 'edscBaseLayer'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -690,12 +690,12 @@ describe('getHandoffValue', () => {
       })).toEqual('trueColor')
     })
 
-    test('returns landWaterMap', async () => {
+    test('returns landWaterMap', () => {
       const handoffInput = {
         valueType: 'edscBaseLayer'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -708,12 +708,12 @@ describe('getHandoffValue', () => {
       })).toEqual('landWaterMap')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'edscBaseLayer'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -722,12 +722,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a edscOverlayLayers', () => {
-    test('returns coastlines', async () => {
+    test('returns coastlines', () => {
       const handoffInput = {
         valueType: 'edscOverlayLayers'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -740,12 +740,12 @@ describe('getHandoffValue', () => {
       })).toEqual('coastlines')
     })
 
-    test('returns referenceFeatures', async () => {
+    test('returns referenceFeatures', () => {
       const handoffInput = {
         valueType: 'edscOverlayLayers'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -758,12 +758,12 @@ describe('getHandoffValue', () => {
       })).toEqual('referenceFeatures')
     })
 
-    test('returns referenceLabels', async () => {
+    test('returns referenceLabels', () => {
       const handoffInput = {
         valueType: 'edscOverlayLayers'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -776,12 +776,12 @@ describe('getHandoffValue', () => {
       })).toEqual('referenceLabels')
     })
 
-    test('returns multiple layers', async () => {
+    test('returns multiple layers', () => {
       const handoffInput = {
         valueType: 'edscOverlayLayers'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           map: {
@@ -796,12 +796,12 @@ describe('getHandoffValue', () => {
       })).toEqual('coastlines,referenceFeatures,referenceLabels')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'edscOverlayLayers'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput
@@ -810,12 +810,12 @@ describe('getHandoffValue', () => {
   })
 
   describe('When the value is a edscTextQuery', () => {
-    test('returns the value', async () => {
+    test('returns the value', () => {
       const handoffInput = {
         valueType: 'edscTextQuery'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {
           keyword: 'mock keyword'
@@ -824,12 +824,12 @@ describe('getHandoffValue', () => {
       })).toEqual('mock keyword')
     })
 
-    test('returns undefined when the value doesn\t exist', async () => {
+    test('returns undefined when the value doesn\t exist', () => {
       const handoffInput = {
         valueType: 'edscTextQuery'
       }
 
-      expect(await getHandoffValue({
+      expect(getHandoffValue({
         collectionMetadata: {},
         searchContext: {},
         handoffInput

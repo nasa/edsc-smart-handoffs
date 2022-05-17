@@ -31,7 +31,7 @@ const spatialMbr = (spatial) => {
  * @param {Object} params.searchContext Collection Search context
  * @param {Object} params.handoffInput UMM-T handoff query input
  */
-export const getHandoffValue = async ({
+export const getHandoffValue = ({
   collectionMetadata = {},
   searchContext = {},
   handoffInput
