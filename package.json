@@ -1,6 +1,6 @@
 {
   "name": "@edsc/smart-handoffs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Smart handoffs allow users to link from one application to another while carrying with them certain parameters that set a specific context (e.g. open up the same dataset, temporal range, and spatial search in a new tool). This code simplifies the creation of smart handoff links.",
   "main": "./dist/js/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/nasa/edsc-smart-handoffs#readme",
   "dependencies": {
-    "@edsc/geo-utils": "^1.0.1",
+    "@edsc/geo-utils": "^1.0.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.2",
     "url-template": "^2.0.8"

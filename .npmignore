@@ -12,3 +12,9 @@ testEnv.js
 .codecov.yml
 .github
 .eslintrc.json
+bin
+.snyk
+report.json
+source.tgz
+cloc.log
+.github
