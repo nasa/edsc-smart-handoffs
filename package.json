@@ -8,7 +8,8 @@
     "test:watch": "jest --watchAll",
     "silent-test": "jest --silent",
     "build": "babel src -d dist --ignore '**/__tests__/*.js'",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
