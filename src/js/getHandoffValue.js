@@ -76,14 +76,17 @@ export const getHandoffValue = ({
     const { swLng } = spatialMbr(spatial)
     value = swLng
   }
+
   if (valueType === 'miny' && spatialExists) {
     const { swLat } = spatialMbr(spatial)
     value = swLat
   }
+
   if (valueType === 'maxx' && spatialExists) {
     const { neLng } = spatialMbr(spatial)
     value = neLng
   }
+
   if (valueType === 'maxy' && spatialExists) {
     const { neLat } = spatialMbr(spatial)
     value = neLat
@@ -93,6 +96,7 @@ export const getHandoffValue = ({
   if (valueType === 'https://schema.org/startDate' && startDate) {
     value = moment.utc(startDate).toISOString()
   }
+
   // Start date value
   if (valueType === 'startDate' && startDate) {
     value = moment.utc(startDate).format('YYYY-MM-DD')
@@ -102,6 +106,7 @@ export const getHandoffValue = ({
   if (valueType === 'https://schema.org/endDate' && endDate) {
     value = moment.utc(endDate).toISOString()
   }
+
   // End Date value
   if (valueType === 'endDate' && endDate) {
     value = moment.utc(endDate).format('YYYY-MM-DD')
