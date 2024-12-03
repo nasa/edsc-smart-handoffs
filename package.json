@@ -1,6 +1,6 @@
 {
   "name": "@edsc/smart-handoffs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Smart handoffs allow users to link from one application to another while carrying with them certain parameters that set a specific context (e.g. open up the same dataset, temporal range, and spatial search in a new tool). This code simplifies the creation of smart handoff links.",
   "main": "./dist/js/index.js",
   "scripts": {
@@ -21,8 +21,8 @@
     "umm-t"
   ],
   "author": {
-    "name": "Matthew Crouch",
-    "email": "matthew@element84.com"
+    "name": "Earthdata Search",
+    "email": "support@earthdata.nasa.gov"
   },
   "license": "Apache-2.0",
   "bugs": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/nasa/edsc-smart-handoffs#readme",
   "dependencies": {
-    "@edsc/geo-utils": "^1.0.4",
+    "@edsc/geo-utils": "^1.0.6",
     "lodash": "^4.17.21",
     "moment": "^2.29.2",
     "url-template": "^2.0.8"
